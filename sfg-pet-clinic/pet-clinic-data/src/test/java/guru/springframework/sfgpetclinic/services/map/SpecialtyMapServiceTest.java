@@ -20,21 +20,43 @@ class SpecialtyMapServiceTest {
 
     @Test
     void findAll() {
+
+        int size = specialtyMapService.findAll().size();
+
+        assertEquals(1,size);
     }
 
     @Test
     void deleteById() {
+
+        specialtyMapService.deleteById(1L);
+
+        assertEquals(0, specialtyMapService.findAll().size());
+
     }
 
     @Test
     void delete() {
+        specialtyMapService.findAll().forEach(speciality -> specialtyMapService.delete(speciality));
+
+        assertEquals(0, specialtyMapService.findAll().size());
     }
 
     @Test
     void save() {
+
+        Speciality specialty = new Speciality();
+        specialty.setId(2L);
+        specialtyMapService.save(specialty);
+
+        assertEquals(2, specialtyMapService.findAll().size());
     }
 
     @Test
     void findById() {
+
+        Speciality speciality = specialtyMapService.findById(1L);
+
+        assertEquals(1L, speciality.getId());
     }
 }
