@@ -1,8 +1,9 @@
-package guru.springframework.sfgpetclinic.services.springdatajpa;
+package guru.springframework.sfgpetclinic.services.map.springdatajpa;
 
 
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.repositories.PetTypeRepository;
+import guru.springframework.sfgpetclinic.services.springdatajpa.PetTypeSDJpaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
