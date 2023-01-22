@@ -34,10 +34,10 @@ jobs:
             - ~/.m2
           key: spring-pet-clinic-{{ checksum "pom.xml" }}
  
-      - run: mvn dependency:go-offline
+      - run: mvn install -DskipTests
  
       # Then run your tests!
-      - run: mvn integration-test
+      - run: mvn dependency:go-offline
  
 workflows:
   # Below is the definition of your workflow.
