@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("/owners")
 @Controller
@@ -51,7 +49,7 @@ public class OwnerController {
         if(owner.getLastName() == null){
             owner.setLastName("");
         }
-        List<Owner> results = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> results = ownerService.findAllByLastNameContainingIgnoreCase(owner.getLastName());
 
         if(results.isEmpty()){
             result.rejectValue("lastName", "notFound","notFound");
@@ -60,7 +58,7 @@ public class OwnerController {
             owner = results.get(0);
             return "redirect:/owners/" + owner.getId();
         } else{
-            model.addAttribute("selections",results);
+            model.addAttribute("listOwners",results);
             return "owners/ownersList";
         }
     }

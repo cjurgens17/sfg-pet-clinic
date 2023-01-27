@@ -59,19 +59,19 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormReturnMany() throws Exception {
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build(),
+        when(ownerService.findAllByLastNameContainingIgnoreCase(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build(),
                         Owner.builder().id(2L).build()));
 
 
         mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownersList"))
-                .andExpect(model().attribute("selections",hasSize(2)));
+                .andExpect(model().attribute("listOwners",hasSize(2)));
     }
 
     @Test
     void processFindFormReturnOne() throws Exception {
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build()));
+        when(ownerService.findAllByLastNameContainingIgnoreCase(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build()));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
                 .andExpect(status().is3xxRedirection())
